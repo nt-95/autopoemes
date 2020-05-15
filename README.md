@@ -10,9 +10,11 @@ extractor.py : script qui a servi à extraire les poèmes à l'état brut sur di
 --------------------------------------------------------
 
 MODE D'EMPLOI 
-Sur le terminal, lancer ''python generateur.py poemes_1780k".
-Il est possible d'ajouter à la commande les arguments facultatifs --v (nombre de vers), --s (nombre de strophes), --p (pas de ponctuation), --m (minuscules uniquement).
-Par exemple "python generateur.py poemes_1780k --v 3 --s 6 --p" générera un poème composé de six strophes de trois vers chacune, sans ponctuation, mais en conservant la casse d'origine. 
+> Sur le terminal, lancer ''python generateur.py poemes_1780k".
+
+> Il est possible d'ajouter à la commande les arguments facultatifs --v (nombre de vers), --s (nombre de strophes), --p (pas de ponctuation), --m (minuscules uniquement).
+
+> Par exemple "python generateur.py poemes_1780k --v 3 --s 6 --p" générera un poème composé de six strophes de trois vers chacune, sans ponctuation, mais en conservant la casse d'origine. 
 
 --------------------------------------------------------
 
