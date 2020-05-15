@@ -10,13 +10,14 @@ extractor.py : script qui a servi à extraire les poèmes à l'état brut sur di
 --------------------------------------------------------
 
 MODE D'EMPLOI 
-> Sur le terminal, lancer ''python generateur.py poemes_1780k"
-> Il est possible d'ajouter à la commande les arguments facultatifs --v (nombre de vers), --s (nombre de strophes), --p (pas de ponctuation), --m (minuscules uniquement)
-> Par exemple "python generateur.py poemes_1780k --v 3 --s 6 --p" générera un poème composé de six strophes de trois vers chacune, sans ponctuation, mais en conservant la casse d'origine. 
+Sur le terminal, lancer ''python generateur.py poemes_1780k".
+Il est possible d'ajouter à la commande les arguments facultatifs --v (nombre de vers), --s (nombre de strophes), --p (pas de ponctuation), --m (minuscules uniquement).
+Par exemple "python generateur.py poemes_1780k --v 3 --s 6 --p" générera un poème composé de six strophes de trois vers chacune, sans ponctuation, mais en conservant la casse d'origine. 
 
 --------------------------------------------------------
 
 EXEMPLES DE TEXTES GÉNÉRÉS 
+
 Cette série de poèmes à été générée automatiquement à partir de generateur.py.
 
 
@@ -30,14 +31,14 @@ DETAILS
 
 Le premier script prend simplement un corpus de poèmes déjà existants d'environ 180 000 vers (Baudelaire, De Nerval, Verlaine, Rimbaud, Mallarmé, Apollinaire, Roger Gilbert-Lecomte, Toukaram, Shankaracharya...) et encadre chaque vers par les mots ''BEGIN NOW'' et ''END'' : il renvoie ainsi un fichier texte avec ces poèmes un peu modifiés. 
 Le deuxième programme analyse ce nouveau corpus, et mémorise sous forme de liste de sets1 chaque mot de chaque ver accompagné des deux mots qui le précèdent. 
-Ainsi un ver comme :
+Ainsi un fragment de texte comme :
 
     “Les métaux inconnus, les perles de la mer,”  
       (Baudelaire, Les Fleurs du Mal, “ Benediction ”)
 
 devient avec le premier script : 
 
-    “BEGIN NOW Les métaux inconnus, les perles de la mer, END”
+    BEGIN NOW Les métaux inconnus, les perles de la mer, END
 
 et avec le deuxième script : 
 
@@ -56,6 +57,7 @@ Si en plus de cela, nous trouvions trois autres fois le groupe de mots ''Les mé
 
 { (''Les'', ''métaux'') : [''inconnus'', ''lourds'', ''brillants'', ''inconnus'', ''inconnus'']  
      … }
+     
 Le programme peut alors compter la probabilité d'apparition d'un mot sachant les deux mots précédents. Cela s'appelle en TAL3 une estimation de modèle de langue. 
 C'est un calcul très simple : à partir d'un set de trois mots (a, b, c), on cherche P(c | a, b) c'est à dire la probabilité de trouver le mot c, sachant les deux mots précédents a et b. Cette probabilité s'obtient en comptant le nombre de fois ou le mot c apparaît précédé de a et b, et en divisant ce nombre par le nombre de fois où a et b apparaissent sans nécessairement être suivis de c, autrement dit : #(a b c) / #(a b). 
 Si l'on reprend l'exemple précédent, pour trouver P(inconnus | Les, métaux) – la probabilité d'apparition du mot ''inconnus'' sachant ''Les'' et ''métaux'' –, on va calculer le nombre d'apparitions de (''Les'', ''métaux'', ''inconnus,'') et le diviser par le nombre d'apparitions de (''Les'', ''métaux'') pour l'ensemble du corpus. Cela donnera une probabilité d'apparition entre 0 et 1 pour ''inconnus''. Ici ''Les métaux inconnus'' apparaît 3 fois, tandis qu'on observe ''Les métaux'' 5 fois. On obtient  P(inconnus | Les métaux) = 3/5 = 0,6.  On fera ensuite ce calcul pour chaque mot possible après ''Les métaux'' : P(lourds | Les métaux) = 1/5 = 0.2,  P(brillants | Les métaux) = 1/5 = 0.2. Et ainsi de suite, pour chaque mot du corpus. 
