@@ -69,24 +69,24 @@ V.
 DETAILS
 1. La préparation du corpus
 
-Le premier script prend simplement un corpus de poèmes déjà existants d'environ 180 000 vers (Baudelaire, De Nerval, Verlaine, Rimbaud, Mallarmé, Apollinaire, Roger Gilbert-Lecomte, Toukaram, Shankaracharya...) et encadre chaque vers par les mots ''BEGIN NOW'' et ''END'' : il renvoie ainsi un fichier texte avec ces poèmes un peu modifiés. 
-Le deuxième programme analyse ce nouveau corpus, et mémorise sous forme de liste de sets1 chaque mot de chaque ver accompagné des deux mots qui le précèdent. 
+Le premier script, prepare_poesie.py, prend simplement un corpus de poèmes déjà existants, qui fait entre 50 000 et 180 000 vers selon le fichier (Baudelaire, De Nerval, Verlaine, Rimbaud, Mallarmé, Apollinaire, Roger Gilbert-Lecomte, Toukaram, Shankaracharya...) et encadre chaque vers par les mots ''BEGIN NOW'' et ''END'' : il renvoie ainsi un fichier texte avec ces poèmes un peu modifiés. 
+Le deuxième script, generateur.py analyse ce nouveau corpus, et mémorise sous forme de liste de sets1 chaque mot de chaque ver accompagné des deux mots qui le précèdent. 
 Ainsi un fragment de texte comme :
 
     “Les métaux inconnus, les perles de la mer,”  
       (Baudelaire, Les Fleurs du Mal, “ Benediction ”)
 
-devient avec le premier script : 
+devient avec prepare_poesie.py : 
 
     BEGIN NOW Les métaux inconnus, les perles de la mer, END
 
-et avec le deuxième script : 
+et avec generateur.py : 
 
     [(''BEGIN'', ''NOW'', ''Les''), (''NOW'', ''Les'', ''métaux''), (''Les'', ''métaux'', ''inconnus,''), … ]
 
 2. L'estimation d'un modèle de langue à partir de probabilités
 
-L'ensemble de ces poèmes est donc transformé en une longue liste de sets de trois mots (a, b, c). À partir d'elle, nous allons être capables d'établir une liste de tous les mots c qui apparaissent après les deux mots a et b. On mémorisera cette information dans un dictionnaire de la forme { (a, b) : [c1, c2, c3] } c'est à dire un dictionnaire qui à chaque suite de mots a et b associe une liste de différents mots c possibles. Par exemple, si dans notre corpus, en plus de ce vers de Baudelaire, nous avions d'autres vers où figurent les groupes de mots ''Les métaux lourds'', ''Les métaux brillants'', ''de la lune'', nous obtiendrions ce dictionnaire :
+L'ensemble de ces poèmes est donc transformé en une longue liste de sets de trois mots (a, b, c). À partir d'elle, nous allons être capables d'établir dans generateur.py une liste de tous les mots c qui apparaissent après les deux mots a et b. On mémorisera cette information dans un dictionnaire de la forme { (a, b) : [c1, c2, c3] } c'est à dire un dictionnaire qui à chaque suite de mots a et b associe une liste de différents mots c possibles. Par exemple, si dans notre corpus, en plus de ce vers de Baudelaire, nous avions d'autres vers où figurent les groupes de mots ''Les métaux lourds'', ''Les métaux brillants'', ''de la lune'', nous obtiendrions ce dictionnaire :
 
 { (''Les'', ''métaux'') : [''inconnus'', ''lourds'', ''brillants'' …] 
                   (''de'', ''la'') : [''mer'', ''lune'', …] 
@@ -98,7 +98,7 @@ Si en plus de cela, nous trouvions trois autres fois le groupe de mots ''Les mé
 { (''Les'', ''métaux'') : [''inconnus'', ''lourds'', ''brillants'', ''inconnus'', ''inconnus'']  
      … }
      
-Le programme peut alors compter la probabilité d'apparition d'un mot sachant les deux mots précédents. C'est une estimation de modèle de langue. 
+Le script generateur.py peut alors compter la probabilité d'apparition d'un mot sachant les deux mots précédents. C'est une estimation de modèle de langue. 
 C'est un calcul très simple : à partir d'un set de trois mots (a, b, c), on cherche P(c | a, b) c'est à dire la probabilité de trouver le mot c, sachant les deux mots précédents a et b. Cette probabilité s'obtient en comptant le nombre de fois ou le mot c apparaît précédé de a et b, et en divisant ce nombre par le nombre de fois où a et b apparaissent sans nécessairement être suivis de c, autrement dit : #(a b c) / #(a b). 
 Si l'on reprend l'exemple précédent, pour trouver P(inconnus | Les, métaux) – la probabilité d'apparition du mot ''inconnus'' sachant ''Les'' et ''métaux'' –, on va calculer le nombre d'apparitions de (''Les'', ''métaux'', ''inconnus,'') et le diviser par le nombre d'apparitions de (''Les'', ''métaux'') pour l'ensemble du corpus. Cela donnera une probabilité d'apparition entre 0 et 1 pour ''inconnus''. Ici ''Les métaux inconnus'' apparaît 3 fois, tandis qu'on observe ''Les métaux'' 5 fois. On obtient  P(inconnus | Les métaux) = 3/5 = 0,6.  On fera ensuite ce calcul pour chaque mot possible après ''Les métaux'' : P(lourds | Les métaux) = 1/5 = 0.2,  P(brillants | Les métaux) = 1/5 = 0.2. Et ainsi de suite, pour chaque mot du corpus. 
 
@@ -106,7 +106,7 @@ Si l'on reprend l'exemple précédent, pour trouver P(inconnus | Les, métaux) �
 
 On peut désormais générer un poème. 
 Pour générer un nouveau vers, on commence toujours par rechercher la probabilité d'apparition de tous les mots c qui peuvent apparaître après ''BEGIN'' et ''NOW'' (a et b). L'ordinateur choisit alors un de ces mots c au hasard, mais son choix est en partie influencé par les probabilités. C'est comme si certains angles d'un dé étaient limés. C'est un weighted random choice : il aura d'avantage tendance a choisir les mots dont la probabilité d'apparition est la plus haute, sans que cela soit toujours le cas. On recherchera ensuite la probabilité d'apparition de tous les mots d qui peuvent apparaître après ''	NOW'' et le mot c choisi toute à l'heure, et on choisira un mot d, et ainsi de suite pour un mot e sachant c et d, etc... 
-Un vers se termine lorsque c'est le mot ''END'' qui est choisi. Après ''END'' il ne peut y avoir que ''BEGIN'' et ''NOW'', donc l'ordinateur fera un saut à la ligne et recommencera à chercher un mot c après ''BEGIN'' et ''NOW''. Le nombre de vers quant à lui est fixé par un chiffre n. Lorsque l'ordinateur est tombé n fois sur le mot ''END'', il affiche le poème à l'écran (en enlevant les ''BEGIN NOW'' et les ''END'') et le programme s'arrête. 
+Un vers se termine lorsque c'est le mot ''END'' qui est choisi. Après ''END'' il ne peut y avoir que ''BEGIN'' et ''NOW'', donc l'ordinateur fera un saut à la ligne et recommencera à chercher un mot c après ''BEGIN'' et ''NOW''. Le nombre de vers quant à lui est fixé par un chiffre n. Lorsque l'ordinateur est tombé n fois sur le mot ''END'', il affiche le poème à l'écran (en enlevant les ''BEGIN NOW'' et les ''END'') et le script s'arrête. 
 
 4. Observations
 
