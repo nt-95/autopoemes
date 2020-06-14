@@ -7,13 +7,14 @@ prepare_poesie.py : script qui a servi à l'élaboration du fichier texte pour l
 
 extractor.py : script qui a servi à extraire les poèmes à l'état brut sur diverses bases de données en ligne. C'est le texte qu'il fournit qu'on passera ensuite dans prepare_poesie.py
 
-poems_50 : un fichier contenant 50 000 vers, formatté pour être utilisable par generateur.py. L'éxécution est plus rapide.
-poems_178 : un fichier contenant 178 000 vers, formatté pour être utilisable par generateur.py. L'éxécution est plus longue mais l'originalité des vers est plus marquée.
+poems_fr_50 : un fichier contenant 50 000 vers, formatté pour être utilisable par generateur.py. L'éxécution est plus rapide.
+poems_fr_178 : un fichier contenant 178 000 vers, formatté pour être utilisable par generateur.py. L'éxécution est plus longue mais l'originalité des vers est plus marquée.
+poems_en_50 : un fichier contenant 50 000 vers en anglais. 
 
 --------------------------------------------------------
 
 MODE D'EMPLOI 
-- Sur le terminal, lancer la commande "python generateur.py poemes_50" ou " "python generateur.py poemes_178"
+- Sur le terminal, lancer la commande "python generateur.py poems_fr_50" ou " "python generateur.py poems_fr_178" ou "python generateur.py poems_en_50"
 - Sur repl.it, insérer une de ces commandes dans la variable run du fichier .replit
 
 - Il est possible d'ajouter à la commande les arguments facultatifs --v (nombre de vers), --s (nombre de strophes), --p (pas de ponctuation), --m (minuscules uniquement), --vb (verbose, pour voir si le programme trouve des rimes)
