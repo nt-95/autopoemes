@@ -88,14 +88,14 @@ et avec generateur.py :
 
 L'ensemble de ces poèmes est donc transformé en une longue liste de sets de trois mots (a, b, c). À partir d'elle, nous allons être capables d'établir dans generateur.py une liste de tous les mots c qui apparaissent après les deux mots a et b. On mémorisera cette information dans un dictionnaire de la forme { (a, b) : [c1, c2, c3] } c'est à dire un dictionnaire qui à chaque suite de mots a et b associe une liste de différents mots c possibles. Par exemple, si dans notre corpus, en plus de ce vers de Baudelaire, nous avions d'autres vers où figurent les groupes de mots ''Les métaux lourds'', ''Les métaux brillants'', ''de la lune'', nous obtiendrions ce dictionnaire :
 
-{ (''Les'', ''métaux'') : [''inconnus'', ''lourds'', ''brillants'' …] 
+    { (''Les'', ''métaux'') : [''inconnus'', ''lourds'', ''brillants'' …] 
                   (''de'', ''la'') : [''mer'', ''lune'', …] 
 	         (''la'', ''mer,'') : [''END'']
                  …  }
 
 Si en plus de cela, nous trouvions trois autres fois le groupe de mots ''Les métaux inconnus'' , on aurait plusieurs fois ''inconnus'' dans la liste associée à (''Les'', ''métaux'') : 
 
-{ (''Les'', ''métaux'') : [''inconnus'', ''lourds'', ''brillants'', ''inconnus'', ''inconnus'']  
+    { (''Les'', ''métaux'') : [''inconnus'', ''lourds'', ''brillants'', ''inconnus'', ''inconnus'']  
      … }
      
 Le script generateur.py peut alors compter la probabilité d'apparition d'un mot sachant les deux mots précédents. C'est une estimation de modèle de langue. 
