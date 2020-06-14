@@ -9,6 +9,7 @@ extractor.py : script qui a servi à extraire les poèmes à l'état brut sur di
 
 poems_fr_50 : un fichier contenant 50 000 vers, formatté pour être utilisable par generateur.py. L'éxécution est plus rapide.
 poems_fr_178 : un fichier contenant 178 000 vers, formatté pour être utilisable par generateur.py. L'éxécution est plus longue mais l'originalité des vers est plus marquée.
+
 poems_en_50 : un fichier contenant 50 000 vers en anglais. 
 
 --------------------------------------------------------
