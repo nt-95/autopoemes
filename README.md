@@ -10,11 +10,11 @@ extractor.py : script qui a servi à extraire les poèmes à l'état brut sur di
 --------------------------------------------------------
 
 MODE D'EMPLOI 
-> Sur le terminal, lancer ''python generateur.py poemes_1780k".
+- Sur le terminal, lancer ''python generateur.py poemes_1780k".
 
-> Il est possible d'ajouter à la commande les arguments facultatifs --v (nombre de vers), --s (nombre de strophes), --p (pas de ponctuation), --m (minuscules uniquement).
+- Il est possible d'ajouter à la commande les arguments facultatifs --v (nombre de vers), --s (nombre de strophes), --p (pas de ponctuation), --m (minuscules uniquement).
 
-> Par exemple "python generateur.py poemes_1780k --v 3 --s 6 --p" générera un poème composé de six strophes de trois vers chacune, sans ponctuation, mais en conservant la casse d'origine. 
+- Par exemple "python generateur.py poemes_1780k --v 3 --s 6 --p" générera un poème composé de six strophes de trois vers chacune, sans ponctuation, mais en conservant la casse d'origine. 
 
 --------------------------------------------------------
 
@@ -22,9 +22,35 @@ EXEMPLES DE TEXTES GÉNÉRÉS
 
 Cette série de poèmes à été générée automatiquement à partir de generateur.py.
 
+> chaque fleur est une chose sotte ;
+mais le canal était désert
+des cieux doux, en les devinant;
+s'élève quelque prière!
 
+> éternel et coupable.
+Le Printemps est évident, car
+Les verres tombèrent se brisèrent
+Un coeur à moi en n'étant rien
+Que le déroulement des vagues, des splendeurs et des accapareurs.
+De sentiment; 
+Les vents ont expiré couronnés d'anémones
 
+> la chambre est glacée.on voit traîner à terre,
+un petit sac brodé de mousse noire, 
+j'aiguisais lentement sur la route,
+sa vieille vénus
 
+> rampe et meurs misérablement
+des baisers, des oiseaux chantant soir et matin, 
+je suis malade: oh! je veux taire
+quelle âme est un temple aux ombres bocagères
+
+> Retiens les griffes de ta jupe large
+C'est le printemps des nouvelles douleurs
+J'ai vu l'horreur de leurs doigts;
+L'ennui, l'enluminure atroce et les coeurs mortels un divin opium !
+Le coeur plein de beauté, connaissez-vous les rides ? 
+Le soleil filtre à travers ma ruine allez donc sans remords
 
 --------------------------------------------------------
 
