@@ -9,12 +9,10 @@ extractor.py : script qui a servi à extraire les poèmes à l'état brut sur di
 
 poems_17 : un fichier contenant 178 000 vers, formatté pour être utilisable par generateur.py
 
-poems_100 : un fichier contenant 1 million de vers. L'algorithme est moins efficace avec ce fichier.
-
 --------------------------------------------------------
 
 MODE D'EMPLOI 
-- Sur le terminal, lancer "python generateur.py poemes_17" ou "python generateur.py poemes_100"
+- Sur le terminal, lancer "python generateur.py poemes_17" 
 
 - Il est possible d'ajouter à la commande les arguments facultatifs --v (nombre de vers), --s (nombre de strophes), --p (pas de ponctuation), --m (minuscules uniquement), --vb (verbiose, pour voir si le programme trouve des rimes)
 
