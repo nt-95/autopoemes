@@ -7,14 +7,18 @@ prepare_poesie.py : script qui a servi à l'élaboration du fichier texte pour l
 
 extractor.py : script qui a servi à extraire les poèmes à l'état brut sur diverses bases de données en ligne. C'est le texte qu'il fournit qu'on passera ensuite dans prepare_poesie.py
 
+poems_17 : un fichier contenant 178 000 vers, formatté pour être utilisable par generateur.py
+
 --------------------------------------------------------
 
 MODE D'EMPLOI 
-- Sur le terminal, lancer ''python generateur.py poemes_1780k".
+- Sur le terminal, lancer ''python generateur.py poemes_17".
 
-- Il est possible d'ajouter à la commande les arguments facultatifs --v (nombre de vers), --s (nombre de strophes), --p (pas de ponctuation), --m (minuscules uniquement).
+- Il est possible d'ajouter à la commande les arguments facultatifs --v (nombre de vers), --s (nombre de strophes), --p (pas de ponctuation), --m (minuscules uniquement), --vb (verbiose, pour voir si le programme trouve des rimes)
 
-- Par exemple "python generateur.py poemes_1780k --v 3 --s 6 --p" générera un poème composé de six strophes de trois vers chacune, sans ponctuation, mais en conservant la casse d'origine. 
+- Par exemple "python generateur.py poemes_17 --v 3 --s 6 --p" générera un poème composé de six strophes de trois vers chacune, sans ponctuation, mais en conservant la casse d'origine. 
+
+- Il est egalement possible d'ajouter un argument facultatif --output nomdeloutput. Les différents poèmes générés associés a cette commande d'output seront tous enregistrés à la suite dans un fichier .txt 
 
 --------------------------------------------------------
 
