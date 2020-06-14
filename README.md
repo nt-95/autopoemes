@@ -7,7 +7,8 @@ prepare_poesie.py : script qui a servi à l'élaboration du fichier texte pour l
 
 extractor.py : script qui a servi à extraire les poèmes à l'état brut sur diverses bases de données en ligne. C'est le texte qu'il fournit qu'on passera ensuite dans prepare_poesie.py
 
-poems_17 : un fichier contenant 178 000 vers, formatté pour être utilisable par generateur.py
+poems_50 : un fichier contenant 50 000 vers, formatté pour être utilisable par generateur.py. L'éxécution est plus rapide.
+poems_170 : un fichier contenant 178 000 vers, formatté pour être utilisable par generateur.py. L'éxécution est plus longue mais l'originalité des vers est plus marquée.
 
 --------------------------------------------------------
 
