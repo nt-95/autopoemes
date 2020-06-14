@@ -70,7 +70,7 @@ DETAILS
 1. La préparation du corpus
 
 Le premier script, prepare_poesie.py, prend simplement un corpus de poèmes déjà existants, qui fait entre 50 000 et 180 000 vers selon le fichier (Baudelaire, De Nerval, Verlaine, Rimbaud, Mallarmé, Apollinaire, Roger Gilbert-Lecomte, Toukaram, Shankaracharya...) et encadre chaque vers par les mots ''BEGIN NOW'' et ''END'' : il renvoie ainsi un fichier texte avec ces poèmes un peu modifiés. 
-Le deuxième script, generateur.py analyse ce nouveau corpus, et mémorise sous forme de liste de sets1 chaque mot de chaque ver accompagné des deux mots qui le précèdent. 
+Le deuxième script, generateur.py analyse ce nouveau corpus, et mémorise sous forme de liste de sets chaque mot de chaque ver accompagné des deux mots qui le précèdent. 
 Ainsi un fragment de texte comme :
 
     “Les métaux inconnus, les perles de la mer,”  
