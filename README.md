@@ -20,7 +20,7 @@ MODE D'EMPLOI
 
 - Par exemple "python generateur.py poemes_17 --v 3 --s 6 --p" générera un poème composé de six strophes de trois vers chacune, sans ponctuation, mais en conservant la casse d'origine. 
 
-- Il est egalement possible d'ajouter un argument facultatif --output nomdeloutput. Les différents poèmes générés associés a cette commande d'output seront tous enregistrés à la suite dans un fichier .txt 
+- Il est egalement possible d'ajouter un argument facultatif --output nomdufichier. Les différents poèmes générés associés a cette commande d'output seront tous enregistrés à la suite dans un fichier .txt. Si l'argument facultatif --output n'est pas utilisé, les poèmes seront par défaut retranscrits dans un fichier nommé "output.txt".
 
 --------------------------------------------------------
 
