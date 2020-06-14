@@ -137,7 +137,7 @@ def gen_ver(occ_abc, occ_abx, ab2abc, rimes, vb):
 				for mot_possible in distrib.keys(): 
 					if len(mot_possible) > 2 and mot_possible[-2:] == rimes[len(rimes)-1]: #si les 2 dernieres lettres du mot possible == les 2 dernieres retenues dans rimes (dernier element de la liste)
 						if vb:
-							print("MOT POSSIBLE APRES ",a, b," QUI RIME:", mot_possible) #si verbiose, on print les rimes possibles s'il y en a
+							print("MOT POSSIBLE APRES ",a, b," QUI RIME:", mot_possible) #si verbose, on print les rimes possibles s'il y en a
 						for i in range(len(mot_possible)):  #pour chaque mot possible, on le decoupe --> mot_possible = 'salut': 
 							"""i: 0 - salut[-i:]: salut 
 							   i: 1 - salut[-i:]: t 
@@ -230,7 +230,7 @@ if __name__ == '__main__':
 	parser.add_argument('--s', type=int, help = "Nombre de strophes. Type : int", default=3)
 	parser.add_argument('--p', action="store_false", help = "Ponctuation off. Type : boolean. Default : on.", default=True)
 	parser.add_argument('--m', action="store_false", help = "Majuscules off. Type : boolean. Default : on.", default=True)
-	parser.add_argument('--vb', action="store_true", help = "Verbiose on. Type : boolean. Default : off.", default=False)
+	parser.add_argument('--vb', action="store_true", help = "Verbose on. Type : boolean. Default : off.", default=False)
 
 	args = parser.parse_args()
 	corpus = args.texte
