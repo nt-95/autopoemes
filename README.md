@@ -16,7 +16,7 @@ MODE D'EMPLOI
 - Sur le terminal, lancer la commande "python generateur.py poemes_50" ou " "python generateur.py poemes_178"
 - Sur repl.it, insérer une de ces commandes dans la variable run du fichier .replit
 
-- Il est possible d'ajouter à la commande les arguments facultatifs --v (nombre de vers), --s (nombre de strophes), --p (pas de ponctuation), --m (minuscules uniquement), --vb (verbiose, pour voir si le programme trouve des rimes)
+- Il est possible d'ajouter à la commande les arguments facultatifs --v (nombre de vers), --s (nombre de strophes), --p (pas de ponctuation), --m (minuscules uniquement), --vb (verbose, pour voir si le programme trouve des rimes)
 
 - Par exemple "python generateur.py poemes_17 --v 3 --s 6 --p" générera un poème composé de six strophes de trois vers chacune, sans ponctuation, mais en conservant la casse d'origine. 
 
